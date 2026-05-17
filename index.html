@@ -594,7 +594,7 @@
 <!-- ── HERO ── -->
 <section id="home">
   <div class="hero-bg"></div>
-  <div class="hero-badge">✦ Facilitador para Docentes · Multidioma · IA + Sabiduría</div>
+  <div class="hero-badge">✦ Facilitador para Docentes · Lenguaje · IA + Sabiduría</div>
   <h1 class="hero-title">Truth<em>Wise</em>ED</h1>
   <p class="hero-verse">"Y conoceréis la verdad, y la verdad os hará libres." — Juan 8:32</p>
   <p class="hero-sub">El asistente inteligente que transforma la preparación docente. Planifica clases, genera ejercicios, gestiona tu tiempo y te mantiene al día con las tendencias educativas.</p>
@@ -680,22 +680,22 @@
   <h2 class="section-title">Niveles educativos</h2>
   <p class="section-sub">TruthWiseED adapta su lenguaje, profundidad y metodología al nivel que necesitas.</p>
   <div class="levels-grid">
-    <div class="level-card">
+    <div class="level-card" onclick="selectLevel('secundaria')" style="cursor:pointer">
       <div class="level-icon">🏫</div>
       <div class="level-name">Secundaria</div>
       <p class="level-desc">Dinámico, visual y motivador. Conecta el conocimiento con la vida real del adolescente.</p>
     </div>
-    <div class="level-card">
+    <div class="level-card" onclick="selectLevel('universidad')" style="cursor:pointer">
       <div class="level-icon">🎓</div>
       <div class="level-name">Universidad</div>
       <p class="level-desc">Riguroso, profundo y actualizado. Fórmulas, investigación y pensamiento crítico.</p>
     </div>
-    <div class="level-card">
+    <div class="level-card" onclick="selectLevel('lenguaje')" style="cursor:pointer">
       <div class="level-icon">🌍</div>
-      <div class="level-name">Multidioma</div>
+      <div class="level-name">Lenguaje</div>
       <p class="level-desc">Responde en español, inglés, portugués y más. Sin configuración adicional.</p>
     </div>
-    <div class="level-card">
+    <div class="level-card" onclick="selectLevel('dispositivos')" style="cursor:pointer">
       <div class="level-icon">📱</div>
       <div class="level-name">PC y Celular</div>
       <p class="level-desc">Diseño adaptable. Funciona perfecto en cualquier dispositivo, en cualquier lugar.</p>
@@ -722,11 +722,25 @@
   }
 
   const prompts = {
-    planificador: 'Soy docente y necesito planificar una clase. ¿Puedes ayudarme?',
+    planificador: 'Soy facilitador y necesito planificar una clase completa. ¿Puedes ayudarme?',
     ejercicios:   'Necesito ejercicios con solución paso a paso y rúbrica de calificación.',
-    tiempo:       'Ayúdame a organizar mejor mi tiempo como docente.',
+    tiempo:       'Ayúdame a organizar mejor mi tiempo como facilitador.',
     tendencias:   '¿Cuáles son las tendencias educativas más importantes hoy?'
   };
+
+  let conversationContext = '';
+
+  function selectLevel(level) {
+    const levelMessages = {
+      secundaria: 'Quiero planificar clases para estudiantes de secundaria. ¿Cómo puedes ayudarme?',
+      universidad: 'Soy facilitador universitario. ¿Cómo puedes apoyar mis clases universitarias?',
+      lenguaje: 'Me gustaría saber en qué idiomas puedes responderme.',
+      dispositivos: 'Me gustaría saber cómo funciona TruthWiseED en mi celular y PC.'
+    };
+    document.getElementById('chatInput').value = levelMessages[level];
+    document.getElementById('asistente').scrollIntoView({behavior: 'smooth'});
+    document.getElementById('chatInput').focus();
+  }
 
   function loadPrompt(type) {
     document.getElementById('chatInput').value = prompts[type];
@@ -744,25 +758,10 @@
     container.scrollTop = container.scrollHeight;
   }
 
-  const responses = [
-    { keywords: ['clase','planif','historia','matemat','física','química','biolog'],
-      text: '¡Con gusto! Cuéntame: <strong>¿qué materia, nivel y cuánto tiempo tienes disponible?</strong> Con eso preparo un plan completo y estructurado para ti.',
-      verse: '"Todo tiene su momento oportuno." — Eclesiastés 3:1' },
-    { keywords: ['ejercicio','práctica','examen','fórmula','problema'],
-      text: '¡Perfecto! Puedo generar ejercicios de <strong>dificultad progresiva</strong> con resolución paso a paso y rúbrica de calificación. ¿Qué tema y nivel necesitas?',
-      verse: '"La sabiduría consiste en saber qué es lo esencial."' },
-    { keywords: ['tiempo','organiz','día','estrés','agenda'],
-      text: 'El tiempo es tu recurso más valioso. Cuéntame: <strong>¿cómo es tu semana típica?</strong> Te ayudo a priorizar, eliminar lo urgente-no-importante y llegar preparado a cada clase.',
-      verse: '"En el trabajo abundante hay ganancia." — Proverbios 14:23' },
-    { keywords: ['tendencia','actual','nueva','metodolog','innova'],
-      text: 'Las tendencias más relevantes hoy incluyen: <strong>Aprendizaje Basado en Proyectos, Neuroeducación, IA en el aula y Evaluación formativa continua</strong>. ¿Quieres profundizar en alguna?',
-      verse: '"El sabio escucha y aumenta su saber." — Proverbios 1:5' },
-    { keywords: ['hola','buenos','buenas','saludos'],
-      text: '¡Hola, colega! 🌟 ¿En qué puedo ayudarte hoy? Puedo planificar clases, crear ejercicios, organizar tu tiempo o mantenerte al día con tendencias educativas.',
-      verse: '"El conocimiento es la lámpara que ilumina el camino."' },
-  ];
+  // Historial de conversación para contexto
+  let chatHistory = [];
 
-  function sendMessage() {
+  async function sendMessage() {
     const input = document.getElementById('chatInput');
     const text = input.value.trim();
     if (!text) return;
@@ -770,17 +769,62 @@
     addMessage(text, true);
     input.value = '';
 
-    setTimeout(() => {
-      const lower = text.toLowerCase();
-      let response = responses.find(r => r.keywords.some(k => lower.includes(k)));
-      if (!response) {
-        response = {
-          text: 'Entiendo tu consulta. Como docente, mereces una respuesta reflexiva. <strong>¿Puedes darme más detalles</strong> para que pueda ayudarte de la mejor manera posible?',
-          verse: '"Pregunta y se te dará; busca y encontrarás." — Mateo 7:7'
-        };
+    // Mostrar indicador de escritura
+    showTyping();
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: text,
+          history: chatHistory
+        })
+      });
+
+      const data = await response.json();
+      hideTyping();
+
+      if (data.response) {
+        // Formatear respuesta con HTML básico
+        const formatted = data.response
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\n\n/g, '<br><br>')
+          .replace(/\n/g, '<br>');
+
+        addMessage(formatted, false);
+
+        // Guardar en historial
+        chatHistory.push({ role: 'user', text: text });
+        chatHistory.push({ role: 'model', text: data.response });
+
+        // Limitar historial a últimos 10 mensajes
+        if (chatHistory.length > 10) chatHistory = chatHistory.slice(-10);
+      } else {
+        addMessage('Hubo un problema al conectar. Por favor intenta de nuevo.', false);
       }
-      addMessage(response.text, false, response.verse);
-    }, 900);
+    } catch (error) {
+      hideTyping();
+      addMessage('Error de conexión. Por favor verifica tu internet e intenta de nuevo.', false);
+    }
+  }
+
+  function showTyping() {
+    const container = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = 'msg bot';
+    div.id = 'typingIndicator';
+    div.innerHTML = `<div class="chat-avatar" style="width:32px;height:32px;font-size:0.8rem;flex-shrink:0">T</div>
+      <div class="msg-bubble" style="opacity:0.7">
+        <span style="letter-spacing:2px">✦ ✦ ✦</span>
+      </div>`;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function hideTyping() {
+    const indicator = document.getElementById('typingIndicator');
+    if (indicator) indicator.remove();
   }
 
   // Smooth scroll for nav links
