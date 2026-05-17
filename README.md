@@ -1,2 +1,2 @@
 # TruthWiseED
-Asistente inteligente para docentes - Planifica clases, genera ejercicios y gestiona el tiempo con sabiduría
+Facilitador inteligente para docentes - Planifica clases, genera ejercicios y gestiona el tiempo con sabiduría
