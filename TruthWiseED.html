@@ -1,0 +1,797 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthWiseED</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-light: #1a3557;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #8a6f35;
+    --white: #f5f0e8;
+    --white-dim: #b8b0a0;
+    --accent: #4a9eff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* -- NAVBAR -- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-logo span { color: var(--white); font-weight: 300; }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--white-dim);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    color: var(--navy) !important;
+    font-weight: 600 !important;
+    padding: 0.45rem 1.1rem !important;
+    border-radius: 20px !important;
+  }
+
+  .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* -- HERO -- */
+  #home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(74,158,255,0.05) 0%, transparent 50%);
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 20px;
+    padding: 0.35rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+    animation: fadeDown 0.9s ease 0.1s both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold-dim);
+    margin-bottom: 1.5rem;
+    animation: fadeDown 1s ease 0.2s both;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--white-dim);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    animation: fadeDown 1s ease 0.3s both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeDown 1s ease 0.4s both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    color: var(--navy);
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 30px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-transform: uppercase;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(245,240,232,0.25);
+    padding: 0.85rem 2rem;
+    border-radius: 30px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* -- CARDS SECTION -- */
+  #funciones {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--white-dim);
+    font-size: 0.95rem;
+    max-width: 500px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.7;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 16px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover {
+    border-color: rgba(201,168,76,0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .card-desc {
+    font-size: 0.88rem;
+    color: var(--white-dim);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: 10px;
+  }
+
+  /* -- CHAT SECTION -- */
+  #asistente {
+    padding: 6rem 2rem;
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .chat-container {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .chat-window {
+    background: var(--navy);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .chat-header {
+    background: rgba(201,168,76,0.08);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .chat-avatar {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .chat-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .chat-status {
+    font-size: 0.72rem;
+    color: #4caf50;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .chat-status::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .chat-messages {
+    padding: 1.5rem;
+    min-height: 320px;
+    max-height: 380px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .msg {
+    display: flex;
+    gap: 0.75rem;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .msg.user { flex-direction: row-reverse; }
+
+  .msg-bubble {
+    max-width: 75%;
+    padding: 0.85rem 1.1rem;
+    border-radius: 16px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .msg.bot .msg-bubble {
+    background: var(--navy-light);
+    border: 1px solid rgba(201,168,76,0.12);
+    color: var(--white);
+    border-bottom-left-radius: 4px;
+  }
+
+  .msg.user .msg-bubble {
+    background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+    color: var(--navy);
+    font-weight: 500;
+    border-bottom-right-radius: 4px;
+  }
+
+  .msg-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--gold);
+    margin-top: 0.5rem;
+    opacity: 0.85;
+  }
+
+  .chat-input-area {
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .quick-btns {
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(201,168,76,0.07);
+  }
+
+  .quick-btn {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .quick-btn:hover { background: rgba(201,168,76,0.18); }
+
+  .chat-input {
+    flex: 1;
+    background: var(--navy-light);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 25px;
+    padding: 0.7rem 1.2rem;
+    color: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .chat-input:focus { border-color: var(--gold); }
+  .chat-input::placeholder { color: var(--white-dim); }
+
+  .send-btn {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+
+  .send-btn:hover { transform: scale(1.08); box-shadow: 0 4px 12px rgba(201,168,76,0.4); }
+
+  /* -- NIVELES -- */
+  #niveles {
+    padding: 6rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .levels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .level-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 14px;
+    padding: 1.75rem;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .level-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+
+  .level-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+
+  .level-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .level-desc { font-size: 0.83rem; color: var(--white-dim); line-height: 1.6; }
+
+  /* -- FOOTER -- */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--gold-dim);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: var(--white-dim);
+    opacity: 0.6;
+  }
+
+  /* -- ANIMATIONS -- */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* -- MOBILE -- */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .nav-logo { font-size: 1.2rem; }
+  }
+
+  /* -- SCROLLBAR -- */
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-track { background: transparent; }
+  .chat-messages::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- -- NAVBAR -- -->
+<nav>
+  <div class="nav-logo">Truth<span>Wise</span>ED</div>
+  <ul class="nav-links">
+    <li><a href="#home" class="active" onclick="setActive(this)">Inicio</a></li>
+    <li><a href="#funciones" onclick="setActive(this)">Funciones</a></li>
+    <li><a href="#asistente" onclick="setActive(this)">Asistente</a></li>
+    <li><a href="#niveles" onclick="setActive(this)">Niveles</a></li>
+    <li><a href="#asistente" class="nav-cta" onclick="setActive(this)">Comenzar</a></li>
+  </ul>
+</nav>
+
+<!-- -- HERO -- -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-badge">? Asistente para Docentes · Multidioma · IA + Sabiduría</div>
+  <h1 class="hero-title">Truth<em>Wise</em>ED</h1>
+  <p class="hero-verse">"Y conoceréis la verdad, y la verdad os hará libres." — Juan 8:32</p>
+  <p class="hero-sub">El asistente inteligente que transforma la preparación docente. Planifica clases, genera ejercicios, gestiona tu tiempo y te mantiene al día con las tendencias educativas.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('asistente').scrollIntoView({behavior:'smooth'})">Hablar con TruthWiseED</button>
+    <button class="btn-outline" onclick="document.getElementById('funciones').scrollIntoView({behavior:'smooth'})">Ver funciones</button>
+  </div>
+</section>
+
+<!-- -- FUNCIONES -- -->
+<section id="funciones">
+  <p class="section-label">? Lo que puedo hacer por ti</p>
+  <h2 class="section-title">Cuatro pilares del docente sabio</h2>
+  <p class="section-sub">Cada función está diseñada para liberar tu tiempo y elevar la calidad de tu enseñanza.</p>
+  <div class="cards-grid">
+    <div class="card" onclick="loadPrompt('planificador')">
+      <span class="card-icon">??</span>
+      <div class="card-title">Planificador de Clases</div>
+      <p class="card-desc">Describe tu tema, nivel y tiempo disponible. Recibirás un plan de clase completo, estructurado y humanamente cálido.</p>
+      <span class="card-tag">Secundaria · Universidad</span>
+    </div>
+    <div class="card" onclick="loadPrompt('ejercicios')">
+      <span class="card-icon">??</span>
+      <div class="card-title">Generador de Ejercicios</div>
+      <p class="card-desc">Crea ejercicios de dificultad progresiva con resolución paso a paso y rúbricas de calificación profesionales.</p>
+      <span class="card-tag">Matemáticas · Ciencias · Más</span>
+    </div>
+    <div class="card" onclick="loadPrompt('tiempo')">
+      <span class="card-icon">?</span>
+      <div class="card-title">Gestión del Tiempo</div>
+      <p class="card-desc">Organiza tu día, prioriza tareas y reduce el estrés. Porque un docente equilibrado transforma más vidas.</p>
+      <span class="card-tag">Productividad · Bienestar</span>
+    </div>
+    <div class="card" onclick="loadPrompt('tendencias')">
+      <span class="card-icon">??</span>
+      <div class="card-title">Tendencias Educativas</div>
+      <p class="card-desc">Mantente actualizado con las últimas corrientes pedagógicas y metodologías de enseñanza del mundo.</p>
+      <span class="card-tag">IA · Pedagogía · Global</span>
+    </div>
+  </div>
+</section>
+
+<!-- -- CHAT -- -->
+<section id="asistente">
+  <div class="chat-container">
+    <p class="section-label">? Tu asistente personal</p>
+    <h2 class="section-title">Habla con TruthWiseED</h2>
+    <p class="section-sub" style="max-width:100%">Escríbeme en tu idioma. Estoy aquí para ayudarte a enseñar con sabiduría.</p>
+    <div class="chat-window">
+      <div class="chat-header">
+        <div class="chat-avatar">T</div>
+        <div>
+          <div class="chat-name">TruthWiseED</div>
+          <div class="chat-status">En línea · Listo para ayudarte</div>
+        </div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg bot">
+          <div class="chat-avatar" style="width:32px;height:32px;font-size:0.8rem;flex-shrink:0">T</div>
+          <div class="msg-bubble">
+            ¡Hola, colega! ?? Soy <strong>TruthWiseED</strong>, tu asistente docente. Puedo ayudarte a planificar clases, crear ejercicios, gestionar tu tiempo y mantenerte al día con las tendencias educativas.
+            <div class="msg-verse">? "El principio de la sabiduría es el temor de Jehová." — Proverbios 1:7</div>
+          </div>
+        </div>
+      </div>
+      <div class="quick-btns">
+        <button class="quick-btn" onclick="loadPrompt('planificador')">?? Planificar clase</button>
+        <button class="quick-btn" onclick="loadPrompt('ejercicios')">?? Crear ejercicios</button>
+        <button class="quick-btn" onclick="loadPrompt('tiempo')">? Organizar mi día</button>
+        <button class="quick-btn" onclick="loadPrompt('tendencias')">?? Tendencias educativas</button>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Escríbeme aquí... (español, inglés, portugués...)" onkeydown="if(event.key==='Enter')sendMessage()">
+        <button class="send-btn" onclick="sendMessage()">?</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- -- NIVELES -- -->
+<section id="niveles">
+  <p class="section-label">? Diseñado para todos</p>
+  <h2 class="section-title">Niveles educativos</h2>
+  <p class="section-sub">TruthWiseED adapta su lenguaje, profundidad y metodología al nivel que necesitas.</p>
+  <div class="levels-grid">
+    <div class="level-card">
+      <div class="level-icon">??</div>
+      <div class="level-name">Secundaria</div>
+      <p class="level-desc">Dinámico, visual y motivador. Conecta el conocimiento con la vida real del adolescente.</p>
+    </div>
+    <div class="level-card">
+      <div class="level-icon">??</div>
+      <div class="level-name">Universidad</div>
+      <p class="level-desc">Riguroso, profundo y actualizado. Fórmulas, investigación y pensamiento crítico.</p>
+    </div>
+    <div class="level-card">
+      <div class="level-icon">??</div>
+      <div class="level-name">Multidioma</div>
+      <p class="level-desc">Responde en español, inglés, portugués y más. Sin configuración adicional.</p>
+    </div>
+    <div class="level-card">
+      <div class="level-icon">??</div>
+      <div class="level-name">PC y Celular</div>
+      <p class="level-desc">Diseño adaptable. Funciona perfecto en cualquier dispositivo, en cualquier lugar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- -- FOOTER -- -->
+<footer>
+  <div class="footer-logo">TruthWiseED</div>
+  <p class="footer-verse">"Y conoceréis la verdad, y la verdad os hará libres." — Juan 8:32</p>
+  <p class="footer-copy">© 2026 TruthWiseED · Transformando la educación con sabiduría</p>
+</footer>
+
+<script>
+  function setActive(el) {
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  const prompts = {
+    planificador: 'Soy docente y necesito planificar una clase. ¿Puedes ayudarme?',
+    ejercicios:   'Necesito ejercicios con solución paso a paso y rúbrica de calificación.',
+    tiempo:       'Ayúdame a organizar mejor mi tiempo como docente.',
+    tendencias:   '¿Cuáles son las tendencias educativas más importantes hoy?'
+  };
+
+  function loadPrompt(type) {
+    document.getElementById('chatInput').value = prompts[type];
+    document.getElementById('asistente').scrollIntoView({behavior: 'smooth'});
+    document.getElementById('chatInput').focus();
+  }
+
+  function addMessage(text, isUser, verse = '') {
+    const container = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = `msg ${isUser ? 'user' : 'bot'}`;
+    const avatar = isUser ? '' : `<div class="chat-avatar" style="width:32px;height:32px;font-size:0.8rem;flex-shrink:0">T</div>`;
+    div.innerHTML = `${avatar}<div class="msg-bubble">${text}${verse ? `<div class="msg-verse">? ${verse}</div>` : ''}</div>`;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  const responses = [
+    { keywords: ['clase','planif','historia','matemat','física','química','biolog'],
+      text: '¡Con gusto! Cuéntame: <strong>¿qué materia, nivel y cuánto tiempo tienes disponible?</strong> Con eso preparo un plan completo y estructurado para ti.',
+      verse: '"Todo tiene su momento oportuno." — Eclesiastés 3:1' },
+    { keywords: ['ejercicio','práctica','examen','fórmula','problema'],
+      text: '¡Perfecto! Puedo generar ejercicios de <strong>dificultad progresiva</strong> con resolución paso a paso y rúbrica de calificación. ¿Qué tema y nivel necesitas?',
+      verse: '"La sabiduría consiste en saber qué es lo esencial."' },
+    { keywords: ['tiempo','organiz','día','estrés','agenda'],
+      text: 'El tiempo es tu recurso más valioso. Cuéntame: <strong>¿cómo es tu semana típica?</strong> Te ayudo a priorizar, eliminar lo urgente-no-importante y llegar preparado a cada clase.',
+      verse: '"En el trabajo abundante hay ganancia." — Proverbios 14:23' },
+    { keywords: ['tendencia','actual','nueva','metodolog','innova'],
+      text: 'Las tendencias más relevantes hoy incluyen: <strong>Aprendizaje Basado en Proyectos, Neuroeducación, IA en el aula y Evaluación formativa continua</strong>. ¿Quieres profundizar en alguna?',
+      verse: '"El sabio escucha y aumenta su saber." — Proverbios 1:5' },
+    { keywords: ['hola','buenos','buenas','saludos'],
+      text: '¡Hola, colega! ?? ¿En qué puedo ayudarte hoy? Puedo planificar clases, crear ejercicios, organizar tu tiempo o mantenerte al día con tendencias educativas.',
+      verse: '"El conocimiento es la lámpara que ilumina el camino."' },
+  ];
+
+  function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage(text, true);
+    input.value = '';
+
+    setTimeout(() => {
+      const lower = text.toLowerCase();
+      let response = responses.find(r => r.keywords.some(k => lower.includes(k)));
+      if (!response) {
+        response = {
+          text: 'Entiendo tu consulta. Como docente, mereces una respuesta reflexiva. <strong>¿Puedes darme más detalles</strong> para que pueda ayudarte de la mejor manera posible?',
+          verse: '"Pregunta y se te dará; busca y encontrarás." — Mateo 7:7'
+        };
+      }
+      addMessage(response.text, false, response.verse);
+    }, 900);
+  }
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
+
+
+
+
+
