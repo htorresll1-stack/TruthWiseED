@@ -28,7 +28,7 @@
     overflow-x: hidden;
   }
 
-  /* ── NAVBAR ── */
+  /* -- NAVBAR -- */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -90,7 +90,7 @@
 
   .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
 
-  /* ── HERO ── */
+  /* -- HERO -- */
   #home {
     min-height: 100vh;
     display: flex;
@@ -203,7 +203,7 @@
 
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
 
-  /* ── CARDS SECTION ── */
+  /* -- CARDS SECTION -- */
   #funciones {
     padding: 6rem 2rem;
     max-width: 1200px;
@@ -307,7 +307,7 @@
     border-radius: 10px;
   }
 
-  /* ── CHAT SECTION ── */
+  /* -- CHAT SECTION -- */
   #asistente {
     padding: 6rem 2rem;
     background: var(--navy-mid);
@@ -486,7 +486,7 @@
 
   .send-btn:hover { transform: scale(1.08); box-shadow: 0 4px 12px rgba(201,168,76,0.4); }
 
-  /* ── NIVELES ── */
+  /* -- NIVELES -- */
   #niveles {
     padding: 6rem 2rem;
     max-width: 1000px;
@@ -523,7 +523,7 @@
 
   .level-desc { font-size: 0.83rem; color: var(--white-dim); line-height: 1.6; }
 
-  /* ── FOOTER ── */
+  /* -- FOOTER -- */
   footer {
     background: var(--navy-mid);
     border-top: 1px solid rgba(201,168,76,0.12);
@@ -553,7 +553,7 @@
     opacity: 0.6;
   }
 
-  /* ── ANIMATIONS ── */
+  /* -- ANIMATIONS -- */
   @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-16px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -564,14 +564,14 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── MOBILE ── */
+  /* -- MOBILE -- */
   @media (max-width: 640px) {
     .nav-links { display: none; }
     .hero-btns { flex-direction: column; align-items: center; }
     .nav-logo { font-size: 1.2rem; }
   }
 
-  /* ── SCROLLBAR ── */
+  /* -- SCROLLBAR -- */
   .chat-messages::-webkit-scrollbar { width: 4px; }
   .chat-messages::-webkit-scrollbar-track { background: transparent; }
   .chat-messages::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 4px; }
@@ -579,7 +579,7 @@
 </head>
 <body>
 
-<!-- ── NAVBAR ── -->
+<!-- -- NAVBAR -- -->
 <nav>
   <div class="nav-logo">Truth<span>Wise</span>ED</div>
   <ul class="nav-links">
@@ -591,10 +591,10 @@
   </ul>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- -- HERO -- -->
 <section id="home">
   <div class="hero-bg"></div>
-  <div class="hero-badge">✦ Facilitador para Docentes · Lenguaje · IA + Sabiduría</div>
+  <div class="hero-badge">? Facilitador para Docentes · Lenguaje · IA + Sabiduría</div>
   <h1 class="hero-title">Truth<em>Wise</em>ED</h1>
   <p class="hero-verse">"Y conoceréis la verdad, y la verdad os hará libres." — Juan 8:32</p>
   <p class="hero-sub">El asistente inteligente que transforma la preparación docente. Planifica clases, genera ejercicios, gestiona tu tiempo y te mantiene al día con las tendencias educativas.</p>
@@ -604,32 +604,32 @@
   </div>
 </section>
 
-<!-- ── FUNCIONES ── -->
+<!-- -- FUNCIONES -- -->
 <section id="funciones">
-  <p class="section-label">✦ Lo que puedo hacer por ti</p>
+  <p class="section-label">? Lo que puedo hacer por ti</p>
   <h2 class="section-title">Cuatro pilares del docente sabio</h2>
   <p class="section-sub">Cada función está diseñada para liberar tu tiempo y elevar la calidad de tu enseñanza.</p>
   <div class="cards-grid">
     <div class="card" onclick="loadPrompt('planificador')">
-      <span class="card-icon">✦</span>
+      <span class="card-icon">?</span>
       <div class="card-title">Planificador de Clases</div>
       <p class="card-desc">Describe tu tema, nivel y tiempo disponible. Recibirás un plan de clase completo, estructurado y humanamente cálido.</p>
       <span class="card-tag">Secundaria · Universidad</span>
     </div>
     <div class="card" onclick="loadPrompt('ejercicios')">
-      <span class="card-icon">∑</span>
+      <span class="card-icon">?</span>
       <div class="card-title">Generador de Ejercicios</div>
       <p class="card-desc">Crea ejercicios de dificultad progresiva con resolución paso a paso y rúbricas de calificación profesionales.</p>
       <span class="card-tag">Matemáticas · Ciencias · Más</span>
     </div>
     <div class="card" onclick="loadPrompt('tiempo')">
-      <span class="card-icon">◎</span>
+      <span class="card-icon">?</span>
       <div class="card-title">Gestión del Tiempo</div>
       <p class="card-desc">Organiza tu día, prioriza tareas y reduce el estrés. Porque un docente equilibrado transforma más vidas.</p>
       <span class="card-tag">Productividad · Bienestar</span>
     </div>
     <div class="card" onclick="loadPrompt('tendencias')">
-      <span class="card-icon">◈</span>
+      <span class="card-icon">?</span>
       <div class="card-title">Tendencias Educativas</div>
       <p class="card-desc">Mantente actualizado con las últimas corrientes pedagógicas y metodologías de enseñanza del mundo.</p>
       <span class="card-tag">IA · Pedagogía · Global</span>
@@ -637,10 +637,10 @@
   </div>
 </section>
 
-<!-- ── CHAT ── -->
+<!-- -- CHAT -- -->
 <section id="asistente">
   <div class="chat-container">
-    <p class="section-label">✦ Tu facilitador personal</p>
+    <p class="section-label">? Tu facilitador personal</p>
     <h2 class="section-title">Habla con TruthWiseED</h2>
     <p class="section-sub" style="max-width:100%">Escríbeme en tu idioma. Estoy aquí para ayudarte a enseñar con sabiduría.</p>
     <div class="chat-window">
@@ -655,61 +655,61 @@
         <div class="msg bot">
           <div class="chat-avatar" style="width:32px;height:32px;font-size:0.8rem;flex-shrink:0">T</div>
           <div class="msg-bubble">
-            ¡Hola, colega! 👋 Soy <strong>TruthWiseED</strong>, tu asistente docente. Puedo ayudarte a planificar clases, crear ejercicios, gestionar tu tiempo y mantenerte al día con las tendencias educativas.
-            <div class="msg-verse">✦ "El principio de la sabiduría es el temor de Jehová." — Proverbios 1:7</div>
+            ¡Hola, colega! ?? Soy <strong>TruthWiseED</strong>, tu asistente docente. Puedo ayudarte a planificar clases, crear ejercicios, gestionar tu tiempo y mantenerte al día con las tendencias educativas.
+            <div class="msg-verse">? "El principio de la sabiduría es el temor de Jehová." — Proverbios 1:7</div>
           </div>
         </div>
       </div>
       <div class="quick-btns">
-        <button class="quick-btn" onclick="loadPrompt('planificador')">📚 Planificar clase</button>
-        <button class="quick-btn" onclick="loadPrompt('ejercicios')">🔢 Crear ejercicios</button>
-        <button class="quick-btn" onclick="loadPrompt('tiempo')">⏰ Organizar mi día</button>
-        <button class="quick-btn" onclick="loadPrompt('tendencias')">📡 Tendencias educativas</button>
+        <button class="quick-btn" onclick="loadPrompt('planificador')">?? Planificar clase</button>
+        <button class="quick-btn" onclick="loadPrompt('ejercicios')">?? Crear ejercicios</button>
+        <button class="quick-btn" onclick="loadPrompt('tiempo')">? Organizar mi día</button>
+        <button class="quick-btn" onclick="loadPrompt('tendencias')">?? Tendencias educativas</button>
       </div>
       <div class="chat-input-area">
         <input type="text" class="chat-input" id="chatInput" placeholder="Escríbeme aquí... (español, inglés, portugués...)" onkeydown="if(event.key==='Enter')sendMessage()">
-        <button class="send-btn" onclick="sendMessage()">➤</button>
+        <button class="send-btn" onclick="sendMessage()">?</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── NIVELES ── -->
+<!-- -- NIVELES -- -->
 <section id="niveles">
-  <p class="section-label">✦ Diseñado para todos</p>
+  <p class="section-label">? Diseñado para todos</p>
   <h2 class="section-title">Niveles educativos</h2>
   <p class="section-sub">TruthWiseED adapta su lenguaje, profundidad y metodología al nivel que necesitas.</p>
   <div class="levels-grid">
     <div class="level-card" onclick="selectLevel('secundaria')" style="cursor:pointer">
-      <div class="level-icon">🏫</div>
+      <div class="level-icon">??</div>
       <div class="level-name">Secundaria</div>
       <p class="level-desc">Dinámico, visual y motivador. Conecta el conocimiento con la vida real del adolescente.</p>
     </div>
     <div class="level-card" onclick="selectLevel('universidad')" style="cursor:pointer">
-      <div class="level-icon">🎓</div>
+      <div class="level-icon">??</div>
       <div class="level-name">Universidad</div>
       <p class="level-desc">Riguroso, profundo y actualizado. Fórmulas, investigación y pensamiento crítico.</p>
     </div>
     <div class="level-card" onclick="selectLevel('lenguaje')" style="cursor:pointer">
-      <div class="level-icon">🌍</div>
+      <div class="level-icon">??</div>
       <div class="level-name">Lenguaje</div>
       <p class="level-desc">Responde en español, inglés, portugués y más. Sin configuración adicional.</p>
     </div>
     <div class="level-card" onclick="selectLevel('dispositivos')" style="cursor:pointer">
-      <div class="level-icon">📱</div>
+      <div class="level-icon">??</div>
       <div class="level-name">PC y Celular</div>
       <p class="level-desc">Diseño adaptable. Funciona perfecto en cualquier dispositivo, en cualquier lugar.</p>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- -- FOOTER -- -->
 <footer>
   <div class="footer-logo">TruthWiseED</div>
   <p class="footer-verse">"Y conoceréis la verdad, y la verdad os hará libres." — Juan 8:32</p>
   <div style="width:60px;height:1px;background:rgba(201,168,76,0.3);margin:1.5rem auto;"></div>
   <p class="footer-copy">© 2026 <strong style="color:var(--gold)">TruthWiseED</strong> · Todos los derechos reservados</p>
-  <p class="footer-copy" style="margin-top:0.4rem">Creado por <strong style="color:var(--gold-dim)">H. Torres</strong> · Perú 🇵🇪</p>
+  <p class="footer-copy" style="margin-top:0.4rem">Creado por <strong style="color:var(--gold-dim)">H. Torres</strong> · Perú ????</p>
   <p class="footer-copy" style="margin-top:0.4rem">Prohibida su reproducción sin autorización expresa del autor</p>
   <div style="width:60px;height:1px;background:rgba(201,168,76,0.15);margin:1.25rem auto;"></div>
   <p class="footer-copy" style="font-size:0.7rem;opacity:0.4">Registro de autoría: GitHub commit 5f91662 · 16 mayo 2026</p>
@@ -753,13 +753,34 @@
     const div = document.createElement('div');
     div.className = `msg ${isUser ? 'user' : 'bot'}`;
     const avatar = isUser ? '' : `<div class="chat-avatar" style="width:32px;height:32px;font-size:0.8rem;flex-shrink:0">T</div>`;
-    div.innerHTML = `${avatar}<div class="msg-bubble">${text}${verse ? `<div class="msg-verse">✦ ${verse}</div>` : ''}</div>`;
+    div.innerHTML = `${avatar}<div class="msg-bubble">${text}${verse ? `<div class="msg-verse">? ${verse}</div>` : ''}</div>`;
     container.appendChild(div);
     container.scrollTop = container.scrollHeight;
   }
 
   // Historial de conversación para contexto
   let chatHistory = [];
+
+  const SYSTEM_PROMPT = `Eres TruthWiseED, un facilitador inteligente diseñado para ayudar a docentes y facilitadores de secundaria y universidad a planificar sus clases, gestionar su tiempo y mantenerse actualizados con las últimas tendencias educativas.
+
+Respondes SIEMPRE en el idioma que usa el usuario automáticamente.
+Eres sabio, cálido, alentador y profundamente humano.
+Inspiras sutilmente hacia la verdad, la integridad y la sabiduría, ocasionalmente citando versículos bíblicos de forma muy sutil y elegante.
+
+Cuando planifiques una clase SIEMPRE incluye:
+- Título creativo e inspirador
+- Objetivos claros
+- Estructura por tiempos
+- Actividades específicas
+- Cierre reflexivo
+- Un pensamiento inspirador sutil al final
+
+Cuando generes ejercicios SIEMPRE incluye:
+- Nivel de dificultad progresivo
+- Resolución paso a paso
+- Rúbrica de calificación profesional
+
+Mantén un tono de colega sabio, nunca robótico. Máximo 400 palabras por respuesta.`;
 
   async function sendMessage() {
     const input = document.getElementById('chatInput');
@@ -768,44 +789,70 @@
 
     addMessage(text, true);
     input.value = '';
-
-    // Mostrar indicador de escritura
     showTyping();
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: text,
-          history: chatHistory
-        })
-      });
+      // Construir historial para Gemini
+      const contents = [];
+
+      // Agregar contexto del sistema como primer mensaje
+      if (chatHistory.length === 0) {
+        contents.push({
+          role: 'user',
+          parts: [{ text: SYSTEM_PROMPT + '\n\nUsuario: ' + text }]
+        });
+      } else {
+        chatHistory.forEach(msg => {
+          contents.push({
+            role: msg.role,
+            parts: [{ text: msg.text }]
+          });
+        });
+        contents.push({
+          role: 'user',
+          parts: [{ text: text }]
+        });
+      }
+
+      const response = await fetch(
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAl1rPbmGx_1AmosicmqipyTViGfg-ZCtE',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: contents,
+            generationConfig: {
+              temperature: 0.8,
+              maxOutputTokens: 1024,
+            }
+          })
+        }
+      );
 
       const data = await response.json();
       hideTyping();
 
-      if (data.response) {
-        // Formatear respuesta con HTML básico
-        const formatted = data.response
+      const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+      if (aiResponse) {
+        const formatted = aiResponse
           .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
           .replace(/\n\n/g, '<br><br>')
           .replace(/\n/g, '<br>');
 
         addMessage(formatted, false);
 
-        // Guardar en historial
         chatHistory.push({ role: 'user', text: text });
-        chatHistory.push({ role: 'model', text: data.response });
+        chatHistory.push({ role: 'model', text: aiResponse });
 
-        // Limitar historial a últimos 10 mensajes
         if (chatHistory.length > 10) chatHistory = chatHistory.slice(-10);
       } else {
-        addMessage('Hubo un problema al conectar. Por favor intenta de nuevo.', false);
+        addMessage('Por favor intenta de nuevo en un momento.', false);
       }
+
     } catch (error) {
       hideTyping();
-      addMessage('Error de conexión. Por favor verifica tu internet e intenta de nuevo.', false);
+      addMessage('Error de conexión. Verifica tu internet e intenta de nuevo.', false);
     }
   }
 
@@ -815,9 +862,7 @@
     div.className = 'msg bot';
     div.id = 'typingIndicator';
     div.innerHTML = `<div class="chat-avatar" style="width:32px;height:32px;font-size:0.8rem;flex-shrink:0">T</div>
-      <div class="msg-bubble" style="opacity:0.7">
-        <span style="letter-spacing:2px">✦ ✦ ✦</span>
-      </div>`;
+      <div class="msg-bubble" style="opacity:0.7"><span style="letter-spacing:2px">? ? ?</span></div>`;
     container.appendChild(div);
     container.scrollTop = container.scrollHeight;
   }
